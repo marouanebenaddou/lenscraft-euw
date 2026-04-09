@@ -135,9 +135,9 @@ export default function PricingSection() {
 
           {/* Price cols */}
           <div className="price-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-            <PriceCol currency={t.pricing.currency} months={t.pricing.months3} original={`249${t.pricing.currency}`} price="149" perMonth={`50${t.pricing.currency}${t.pricing.perMonth}`} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
-            <PriceCol currency={t.pricing.currency} months={t.pricing.months6} original={`349${t.pricing.currency}`} price="199" perMonth={`33${t.pricing.currency}${t.pricing.perMonth}`} badge="-33%" btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
-            <PriceCol currency={t.pricing.currency} months={t.pricing.months12} original={`499${t.pricing.currency}`} price="299" perMonth={`25${t.pricing.currency}${t.pricing.perMonth}`} badge="-50%" extra={t.pricing.gift} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
+            <PriceCol currency={t.pricing.currency} months={t.pricing.device1} original={`59${t.pricing.currency}`} price="39" perMonth={`39${t.pricing.currency}${t.pricing.perYear}`} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
+            <PriceCol currency={t.pricing.currency} months={t.pricing.device2} original={`89${t.pricing.currency}`} price="59" perMonth={`59${t.pricing.currency}${t.pricing.perYear}`} badge="-33%" btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
+            <PriceCol currency={t.pricing.currency} months={t.pricing.device3} original={`109${t.pricing.currency}`} price="79" perMonth={`79${t.pricing.currency}${t.pricing.perYear}`} badge="BEST VALUE" extra={t.pricing.gift} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
           </div>
         </div>
         </Animate>
@@ -189,9 +189,9 @@ export default function PricingSection() {
 
           {/* Gold price cols */}
           <div className="price-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 24 }}>
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.months3} original={`349${t.pricing.currency}`} price="199" perMonth={`66${t.pricing.currency}${t.pricing.perMonth}`} btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.months6} original={`449${t.pricing.currency}`} price="299" perMonth={`50${t.pricing.currency}${t.pricing.perMonth}`} badge="-33%" badgeBg="#FBBF24" btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.months12} original={`699${t.pricing.currency}`} price="499" perMonth={`42${t.pricing.currency}${t.pricing.perMonth}`} badge="-50% N°1" badgeBg="#FBBF24" btnLabel={t.pricing.chooseBtn} btnStyle={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)", color: "#0E1115", fontWeight: 700 }} />
+            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device1} original={`89${t.pricing.currency}`} price="59" perMonth={`59${t.pricing.currency}${t.pricing.perYear}`} btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
+            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device2} original={`109${t.pricing.currency}`} price="79" perMonth={`79${t.pricing.currency}${t.pricing.perYear}`} badge="-27%" badgeBg="#FBBF24" btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
+            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device3} original={`139${t.pricing.currency}`} price="99" perMonth={`99${t.pricing.currency}${t.pricing.perYear}`} badge="BEST VALUE" badgeBg="#FBBF24" btnLabel={t.pricing.chooseBtn} btnStyle={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)", color: "#0E1115", fontWeight: 700 }} />
           </div>
         </div>
         </Animate>
