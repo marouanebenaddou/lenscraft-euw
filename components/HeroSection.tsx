@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { Zap, MessageSquare, CheckCircle, Tv, Film, Shield } from "@/components/icons";
 import { Animate } from "@/components/Animate";
 
@@ -10,7 +9,9 @@ export default function HeroSection() {
 
   return (
     <section style={{ position: "relative", minHeight: "100vh", backgroundColor: "#0E1115", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 64 }}>
-      <Image src="https://xperi.com/wp-content/uploads/2023/09/Xperi.com-Blog-Header-1280-%C3%97-720-px-26.png" alt="Family watching TV" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} priority />
+      <video autoPlay muted loop playsInline style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}>
+        <source src="/lens_video.mp4" type="video/mp4" />
+      </video>
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(14,17,21,0.88) 0%, rgba(14,17,21,0.62) 50%, rgba(14,17,21,0.88) 100%)" }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 200, background: "linear-gradient(to top, #0E1115, transparent)", zIndex: 2 }} />
 
