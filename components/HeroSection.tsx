@@ -1,5 +1,5 @@
 "use client";
-import { Zap, MessageSquare, CheckCircle, Tv, Film, Shield } from "@/components/icons";
+import { Zap, CheckCircle, Tv, Film, Shield } from "@/components/icons";
 import { Animate } from "@/components/Animate";
 
 export default function HeroSection() {
@@ -42,10 +42,10 @@ export default function HeroSection() {
               style={{ display: "flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg, #257BF4 0%, #1193D4 100%)", color: "#FFFFFF", border: "none", borderRadius: 10, padding: "14px 32px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")} onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             ><Zap size={18} />Try now</button>
-            <button onClick={() => document.getElementById("free-test")?.scrollIntoView({ behavior: "smooth" })}
-              style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(14,17,21,0.6)", border: "1px solid rgba(255,255,255,0.25)", color: "#FAFAFA", borderRadius: 10, padding: "14px 32px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)")} onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)")}
-            ><MessageSquare size={18} />Contact us</button>
+            <button onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+              style={{ display: "flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#E63333,#C2185B)", border: "none", color: "#FFFFFF", borderRadius: 10, padding: "14px 32px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 4px 20px rgba(230,51,51,0.35)", transition: "filter 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(1.1)")} onMouseLeave={(e) => (e.currentTarget.style.filter = "brightness(1)")}
+            >🔥 View our offers</button>
           </div>
         </Animate>
 
