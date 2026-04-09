@@ -50,12 +50,13 @@ const goldLocked = [
 ];
 
 const paymentMethods = [
-  { name: "Visa / MC", img: "/images/payments/visa-mastercard.png", badge: "-10%" },
-  { name: "Bank Transfer", img: "/images/payments/virement-bancaire.png", badge: null },
-  { name: "PayPal", img: "/images/payments/paypal.png", badge: null },
-  { name: "Revolut", img: "/images/payments/remitly.png", badge: null },
-  { name: "Wise", img: "/images/payments/western-union.png", badge: null },
-  { name: "Crypto", img: "/images/payments/binance.png", badge: null },
+  { name: "Visa", img: "/images/payments/visa.svg", badge: "-10%" },
+  { name: "Mastercard", img: "/images/payments/mastercard.svg", badge: "-10%" },
+  { name: "PayPal", img: "/images/payments/paypal.svg", badge: null },
+  { name: "Revolut", img: "/images/payments/revolut.svg", badge: null },
+  { name: "Wise", img: "/images/payments/wise.svg", badge: null },
+  { name: "Bank Transfer", img: "/images/payments/bank-transfer.svg", badge: null },
+  { name: "Crypto", img: "/images/payments/binance.svg", badge: null },
 ];
 
 // ── Desktop Price Tile ────────────────────────────────────────────────────────
@@ -374,18 +375,18 @@ export default function PricingSection() {
         {/* Payment methods */}
         <Animate type="fadeInUp" delay={0.25}>
           <h3 className="text-base font-semibold text-white text-center mb-5">Accepted payment methods</h3>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-8">
+          <div className="grid grid-cols-4 md:grid-cols-7 gap-3 mb-8">
             {paymentMethods.map((p) => (
-              <div key={p.name} className="relative bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center gap-2">
+              <div key={p.name} className="relative bg-white/5 border border-white/8 rounded-xl p-3 flex flex-col items-center gap-2">
                 {p.badge && (
                   <span className="absolute -top-2 -right-2 bg-cyan-400 text-black text-[9px] font-bold rounded-full px-1.5 py-0.5">
                     {p.badge}
                   </span>
                 )}
-                <div className="relative w-16 h-8">
+                <div className="relative w-8 h-8 opacity-80">
                   <Image src={p.img} alt={p.name} fill style={{ objectFit: "contain" }} />
                 </div>
-                <span className="text-[10px] text-gray-400 font-medium text-center">{p.name}</span>
+                <span className="text-[10px] text-gray-400 font-medium text-center leading-tight">{p.name}</span>
               </div>
             ))}
           </div>
