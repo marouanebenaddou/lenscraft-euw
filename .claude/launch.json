@@ -2,10 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "lenscraft-dev",
+      "name": "lenscraft-euw-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "port": 3001,
+      "cwd": "/Users/marouanebenaddouidrissi/Documents/lenscraft-euw"
     }
   ]
 }
