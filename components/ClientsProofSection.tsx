@@ -90,7 +90,7 @@ export default function ClientsProofSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((i) => (i >= max ? 0 : i + 1));
-    }, 1500);
+    }, 4000);
     return () => clearInterval(timer);
   }, [max]);
 
