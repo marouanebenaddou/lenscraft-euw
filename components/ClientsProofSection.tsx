@@ -3,17 +3,18 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Shield } from "@/components/icons";
 import { Animate } from "@/components/Animate";
+import { useLang } from "@/lib/i18n";
 
-const clients = [
-  { img: "/images/whatsapp-proof-1.jpeg", label: "Client Maroc – Reçu Wafacash", stars: 5 },
-  { img: "/images/whatsapp-proof-2.jpeg", label: "Client Maroc – Virement CDM 499 DH", stars: 5 },
-  { img: "/images/whatsapp-proof-3.jpeg", label: "Client Europe – Paiement PayPal", stars: 5 },
-  { img: "/images/whatsapp-proof-4.jpeg", label: "Client Maroc – Reçu Wafacash", stars: 4 },
-  { img: "/images/whatsapp-proof-5.jpeg", label: "Client Sénégal – Reçu Wave", stars: 5 },
-  { img: "/images/whatsapp-proof-6.jpeg", label: "Client Europe – Paiement Remitly", stars: 5 },
-  { img: "/images/whatsapp-proof-7.jpeg", label: "Client Maroc – Virement 500 DH", stars: 5 },
-  { img: "/images/whatsapp-proof-9.jpeg", label: "Client Maroc – Virement bancaire", stars: 4 },
-  { img: "/images/whatsapp-proof-10.jpeg", label: "Client Maroc – Paiement PDF", stars: 5 },
+const clientImgs = [
+  { img: "/images/whatsapp-proof-1.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-2.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-3.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-4.jpeg", stars: 4 },
+  { img: "/images/whatsapp-proof-5.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-6.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-7.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-9.jpeg", stars: 4 },
+  { img: "/images/whatsapp-proof-10.jpeg", stars: 5 },
 ];
 
 const VISIBLE = 3;
@@ -31,11 +32,9 @@ function WhatsAppCard({ img, label, stars }: { img: string; label: string; stars
         overflow: "hidden",
       }}
     >
-      {/* Real WhatsApp proof screenshot */}
       <div style={{ position: "relative", width: "100%", aspectRatio: "9/16", maxHeight: 320 }}>
         <Image src={img} alt={label} fill style={{ objectFit: "cover", objectPosition: "top" }} />
       </div>
-      {/* Footer */}
       <div style={{ padding: "10px 14px", backgroundColor: "#111827" }}>
         <div style={{ fontSize: 12, color: "#9CA3AF", marginBottom: 6 }}>✅ {label}</div>
         <div style={{ display: "flex", gap: 2 }}>
@@ -49,6 +48,7 @@ function WhatsAppCard({ img, label, stars }: { img: string; label: string; stars
 }
 
 export default function ClientsProofSection() {
+  const { t } = useLang();
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -60,12 +60,11 @@ export default function ClientsProofSection() {
   }, []);
 
   const visible = isMobile ? 1 : VISIBLE;
-  const max = clients.length - visible;
+  const max = clientImgs.length - visible;
 
   const prev = () => setIndex((i) => Math.max(0, i - 1));
   const next = () => setIndex((i) => Math.min(max, i + 1));
 
-  // Auto-scroll every 1.5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((i) => (i >= max ? 0 : i + 1));
@@ -81,18 +80,17 @@ export default function ClientsProofSection() {
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, border: "1px solid #34D399", borderRadius: 20, padding: "5px 16px" }}>
               <Shield size={14} color="#34D399" />
-              <span style={{ fontSize: 13, color: "#34D399", fontWeight: 500 }}>Preuves de Paiement</span>
+              <span style={{ fontSize: 13, color: "#34D399", fontWeight: 500 }}>{t.clients.badge}</span>
             </div>
           </div>
-          {/* Heading */}
           <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, color: "#FAFAFA", textAlign: "center", marginBottom: 12 }}>
-            +10 000 Clients{" "}
+            {t.clients.title}{" "}
             <span style={{ background: "linear-gradient(to right, #34D399, #22D3EE)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              Satisfaits
+              {t.clients.titleAccent}
             </span>
           </h2>
           <p style={{ fontSize: 16, color: "#9CA3AF", textAlign: "center", marginBottom: 48 }}>
-            Des preuves réelles de nos clients — paiements vérifiés et abonnements activés en direct
+            {t.clients.subtitle}
           </p>
         </Animate>
 
@@ -104,8 +102,8 @@ export default function ClientsProofSection() {
           </button>
           <div style={{ overflow: "hidden" }}>
             <div style={{ display: "flex", gap: 16, transition: "transform 0.3s ease", transform: isMobile ? `translateX(calc(-${index} * (100% + 16px)))` : `translateX(calc(-${index} * (33.333% + 5.333px)))` }}>
-              {clients.map((c, i) => (
-                <WhatsAppCard key={i} img={c.img} label={c.label} stars={c.stars} />
+              {clientImgs.map((c, i) => (
+                <WhatsAppCard key={i} img={c.img} label={t.clients.items[i] || ""} stars={c.stars} />
               ))}
             </div>
           </div>
@@ -117,12 +115,8 @@ export default function ClientsProofSection() {
 
         {/* Stats */}
         <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
-          {[
-            { value: "10,000+", label: "Clients Satisfaits" },
-            { value: "4.9/5", label: "Note Moyenne" },
-            { value: "98%", label: "Taux de Satisfaction" },
-          ].map((s, i) => (
-            <Animate key={s.label} type="fadeInUp" delay={0.1 + i * 0.1}>
+          {[t.clients.stat1, t.clients.stat2, t.clients.stat3].map((s, i) => (
+            <Animate key={i} type="fadeInUp" delay={0.1 + i * 0.1}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 800, color: "#34D399" }}>{s.value}</div>
                 <div style={{ fontSize: 14, color: "#9CA3AF", marginTop: 4 }}>{s.label}</div>

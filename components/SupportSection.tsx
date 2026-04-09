@@ -2,53 +2,23 @@
 import Image from "next/image";
 import { MessageCircle, Phone, Mail, Home, Clock, Shield, Star } from "@/components/icons";
 import { Animate } from "@/components/Animate";
+import { useLang } from "@/lib/i18n";
 
-const channels = [
-  {
-    icon: <MessageCircle size={24} color="white" />,
-    gradient: "linear-gradient(135deg, #22C55E, #16A34A)",
-    name: "WhatsApp",
-    desc: "Support instantané via WhatsApp",
-    badge1: "⚡ < 5 min",
-    badge2: "🕒 24/7",
-    contact: "+447446248557",
-  },
-  {
-    icon: <Phone size={24} color="white" />,
-    gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)",
-    name: "Téléphone",
-    desc: "Assistance téléphonique directe",
-    badge1: "⚡ Immédiat",
-    badge2: "🕒 8h-23h",
-    contact: "+447446248557",
-  },
-  {
-    icon: <Mail size={24} color="white" />,
-    gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)",
-    name: "Email",
-    desc: "Support technique par email",
-    badge1: "⚡ < 2h",
-    badge2: "🕒 24/7",
-    contact: "contact@lensscrafts.com",
-  },
-  {
-    icon: <Home size={24} color="white" />,
-    gradient: "linear-gradient(135deg, #F97316, #EA580C)",
-    name: "À Domicile",
-    desc: "Intervention technique chez vous",
-    badge1: "⚡ 24-48h",
-    badge2: "🕒 Lun-Sam",
-    contact: "Sur RDV",
-  },
+const channelIcons = [
+  { icon: <MessageCircle size={24} color="white" />, gradient: "linear-gradient(135deg, #22C55E, #16A34A)" },
+  { icon: <Phone size={24} color="white" />, gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)" },
+  { icon: <Mail size={24} color="white" />, gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)" },
+  { icon: <Home size={24} color="white" />, gradient: "linear-gradient(135deg, #F97316, #EA580C)" },
 ];
 
-const exceptional = [
-  { icon: <Clock size={22} color="white" />, bg: "linear-gradient(135deg, #14B8A6, #06B6D4)", title: "Réponse Rapide", desc: "Temps de réponse garanti sous 5 minutes pour les urgences" },
-  { icon: <Shield size={22} color="white" />, bg: "linear-gradient(135deg, #06B6D4, #3B82F6)", title: "Support Gratuit", desc: "Assistance technique illimitée incluse dans votre abonnement" },
-  { icon: <Star size={22} color="white" />, bg: "linear-gradient(135deg, #FBBF24, #F59E0B)", title: "Techniciens Experts", desc: "Équipe technique certifiée et formée aux dernières technologies premium" },
+const exceptionalIcons = [
+  { icon: <Clock size={22} color="white" />, bg: "linear-gradient(135deg, #14B8A6, #06B6D4)" },
+  { icon: <Shield size={22} color="white" />, bg: "linear-gradient(135deg, #06B6D4, #3B82F6)" },
+  { icon: <Star size={22} color="white" />, bg: "linear-gradient(135deg, #FBBF24, #F59E0B)" },
 ];
 
 export default function SupportSection() {
+  const { t } = useLang();
   return (
     <section id="support" style={{ backgroundColor: "#0A0D11", padding: "96px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -56,10 +26,10 @@ export default function SupportSection() {
         <Animate type="fadeInUp">
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 800, color: "#257BF4", marginBottom: 12 }}>
-            Support Client 24/7
+            {t.support.fullTitle}
           </h2>
           <p style={{ fontSize: 16, color: "#9CA3AF", maxWidth: 540, margin: "0 auto" }}>
-            Une équipe dédiée pour vous accompagner à chaque étape de votre expérience digitale
+            {t.support.fullDesc}
           </p>
         </div>
         </Animate>
@@ -68,12 +38,11 @@ export default function SupportSection() {
         <Animate type="fadeIn" delay={0.1}>
         <div style={{ maxWidth: 760, margin: "0 auto 56px", position: "relative", borderRadius: 20, overflow: "hidden" }}>
           <div style={{ position: "relative", aspectRatio: "16/7" }}>
-            <Image src="/images/iptv-support.jpg" alt="Équipe Support Lenscraft" fill style={{ objectFit: "cover" }} />
+            <Image src="/images/iptv-support.jpg" alt="Lenscraft Support Team" fill style={{ objectFit: "cover" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
           </div>
-          {/* Active badge */}
           <div style={{ position: "absolute", top: 16, left: 16, backgroundColor: "rgba(34,197,94,0.9)", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 600, color: "#FAFAFA", display: "flex", alignItems: "center", gap: 6 }}>
-            🟢 Support Actif 24/7
+            {t.support.activeBadge}
           </div>
         </div>
         </Animate>
@@ -81,15 +50,15 @@ export default function SupportSection() {
         {/* Contact channels */}
         <Animate type="fadeInUp" delay={0.1}>
           <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FAFAFA", textAlign: "center", marginBottom: 28 }}>
-            Contactez-nous par Votre Canal Préféré
+            {t.support.contactTitle}
           </h3>
         </Animate>
         <div className="support-grid-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 32 }}>
-          {channels.map((ch, i) => (
+          {t.support.channels.map((ch, i) => (
             <Animate key={ch.name} type="fadeInUp" delay={0.15 + i * 0.08}>
             <div style={{ backgroundColor: "rgba(17,24,39,0.8)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "24px 20px", display: "flex", flexDirection: "column", gap: 10 }}>
-              <div style={{ width: 52, height: 52, borderRadius: 12, background: ch.gradient, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {ch.icon}
+              <div style={{ width: 52, height: 52, borderRadius: 12, background: channelIcons[i].gradient, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {channelIcons[i].icon}
               </div>
               <div style={{ fontSize: 17, fontWeight: 700, color: "#FAFAFA" }}>{ch.name}</div>
               <div style={{ fontSize: 12, color: "#9CA3AF" }}>{ch.desc}</div>
@@ -109,13 +78,13 @@ export default function SupportSection() {
         <Animate type="fadeInUp" delay={0.1}>
         <div style={{ background: "linear-gradient(135deg, rgba(17,24,39,0.9), rgba(11,16,24,0.9))", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "40px", marginBottom: 32 }}>
           <h3 style={{ fontSize: 20, fontWeight: 700, color: "#FAFAFA", textAlign: "center", marginBottom: 32 }}>
-            Pourquoi Notre Support est Exceptionnel
+            {t.support.exceptionalTitle}
           </h3>
           <div className="mobile-1col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, textAlign: "center" }}>
-            {exceptional.map((e) => (
+            {t.support.exceptional.map((e, i) => (
               <div key={e.title}>
-                <div style={{ width: 52, height: 52, borderRadius: "50%", background: e.bg, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px" }}>
-                  {e.icon}
+                <div style={{ width: 52, height: 52, borderRadius: "50%", background: exceptionalIcons[i].bg, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px" }}>
+                  {exceptionalIcons[i].icon}
                 </div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: "#FAFAFA", marginBottom: 8 }}>{e.title}</div>
                 <div style={{ fontSize: 13, color: "#9CA3AF", lineHeight: 1.5 }}>{e.desc}</div>
@@ -132,7 +101,7 @@ export default function SupportSection() {
             onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(1.1)")}
             onMouseLeave={(e) => (e.currentTarget.style.filter = "brightness(1)")}>
             <MessageCircle size={18} />
-            Contacter le Support
+            {t.support.contactBtn}
           </a>
           <a href="tel:+447446248557"
             style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(17,24,39,0.8)", border: "1px solid rgba(255,255,255,0.15)", color: "#FAFAFA", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, textDecoration: "none", transition: "border-color 0.2s" }}

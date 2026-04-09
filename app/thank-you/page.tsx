@@ -1,16 +1,16 @@
 "use client";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useLang } from "@/lib/i18n";
 
 function ThankYouContent() {
   const router = useRouter();
   const params = useSearchParams();
+  const { t } = useLang();
   const [seconds, setSeconds] = useState(10);
 
   const clientWa = params.get("wa") || "";
-  const waMsg = encodeURIComponent(
-    `Bonjour, je souhaite tester Lenscraft gratuitement 24h. Mon numéro WhatsApp : ${clientWa}`
-  );
+  const waMsg = encodeURIComponent(`${t.thankYou.waMsg}${clientWa}`);
   const waLink = `https://wa.me/447446248557?text=${waMsg}`;
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function ThankYouContent() {
             lineHeight: 1.15,
           }}
         >
-          Demande reçue avec succès !
+          {t.thankYou.heading}
         </h1>
 
         {/* Sub */}
@@ -80,10 +80,9 @@ function ThankYouContent() {
             margin: "0 auto 40px",
           }}
         >
-          Merci pour votre intérêt. Un agent Lenscraft va vous contacter{" "}
-          <strong style={{ color: "#FAFAFA" }}>très prochainement</strong> sur
-          votre WhatsApp pour configurer votre essai gratuit ou finaliser votre
-          abonnement.
+          {t.thankYou.subText.split("<strong>")[0]}
+          <strong style={{ color: "#FAFAFA" }}>{t.thankYou.subText.includes("<strong>") ? t.thankYou.subText.split("<strong>")[1]?.split("</strong>")[0] : ""}</strong>
+          {t.thankYou.subText.includes("</strong>") ? t.thankYou.subText.split("</strong>")[1] : ""}
         </p>
 
         {/* Info card */}
@@ -97,11 +96,7 @@ function ThankYouContent() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {[
-              { icon: "⚡", text: "Temps de réponse habituel : moins de 5 minutes" },
-              { icon: "🕒", text: "Support disponible 7j/7 de 10h à 23h" },
-              { icon: "🔒", text: "Vos données sont sécurisées et confidentielles" },
-            ].map((item) => (
+            {t.thankYou.infoItems.map((item) => (
               <div key={item.text} style={{ display: "flex", alignItems: "center", gap: 12, textAlign: "left" }}>
                 <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
                 <span style={{ fontSize: 14, color: "#9CA3AF", lineHeight: 1.5 }}>{item.text}</span>
@@ -134,7 +129,7 @@ function ThankYouContent() {
           onMouseLeave={(e) => { e.currentTarget.style.filter = "brightness(1)"; e.currentTarget.style.transform = "translateY(0)"; }}
         >
           <span style={{ fontSize: 22 }}>💬</span>
-          Contacter sur WhatsApp maintenant
+          {t.thankYou.contactBtn}
         </a>
 
         {/* Back link */}
@@ -150,7 +145,7 @@ function ThankYouContent() {
               fontFamily: "inherit",
             }}
           >
-            ← Retour au site ({seconds}s)
+            {t.thankYou.backBtn} ({seconds}s)
           </button>
         </div>
       </div>

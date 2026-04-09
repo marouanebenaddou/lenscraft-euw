@@ -1,9 +1,6 @@
 "use client";
 import { Animate } from "@/components/Animate";
-const services = ["Abonnements Premium", "Films & Séries 4K", "Sport en Direct", "Support 24/7"];
-const contact = ["📞 +447446248557", "📧 contact@lensscrafts.com", "🕒 Support 7j/7 10h-23h"];
-const coverage = ["🌍 Europe", "🌍 Amérique", "🌍 Afrique", "🌍 Monde entier"];
-const legal = ["À Propos", "Conditions Générales", "Politique de Confidentialité", "Politique de Remboursement", "Contact"];
+import { useLang } from "@/lib/i18n";
 
 function FooterCol({ title, items }: { title: string; items: string[] }) {
   return (
@@ -30,6 +27,7 @@ function FooterCol({ title, items }: { title: string; items: string[] }) {
 }
 
 export default function Footer() {
+  const { t } = useLang();
   return (
     <footer style={{ backgroundColor: "#080B0F", paddingTop: 64, paddingBottom: 32, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -59,19 +57,19 @@ export default function Footer() {
               Lenscraft
             </div>
             <p style={{ fontSize: 14, color: "#9CA3AF", lineHeight: 1.6, marginTop: 12, maxWidth: 220 }}>
-              Streaming TV Premium International — Films, Séries & Chaînes TV en 4K
+              {t.footer.tagline}
             </p>
           </div>
 
-          <FooterCol title="Services" items={services} />
-          <FooterCol title="Contact" items={contact} />
-          <FooterCol title="Couverture" items={coverage} />
-          <FooterCol title="Légal" items={legal} />
+          <FooterCol title={t.footer.servicesTitle} items={t.footer.services} />
+          <FooterCol title={t.footer.contactTitle} items={t.footer.contact} />
+          <FooterCol title={t.footer.coverageTitle} items={t.footer.coverageItems} />
+          <FooterCol title={t.footer.legal} items={t.footer.legalItems} />
         </div>
 
         {/* Copyright */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginTop: 48, paddingTop: 24, textAlign: "center" }}>
-          <p style={{ fontSize: 13, color: "#6B7280" }}>© 2024 Lenscraft — Tous droits réservés.</p>
+          <p style={{ fontSize: 13, color: "#6B7280" }}>{t.footer.copyrightText}</p>
         </div>
         </Animate>
       </div>

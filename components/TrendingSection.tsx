@@ -1,5 +1,6 @@
 "use client";
 import { Animate } from "@/components/Animate";
+import { useLang } from "@/lib/i18n";
 
 const movies = [
   { rank: 1, img: "https://dublinview.com/wp-content/uploads/2026/02/1.png" },
@@ -13,6 +14,7 @@ const movies = [
 ];
 
 export default function TrendingSection() {
+  const { t } = useLang();
   return (
     <section style={{ backgroundColor: "#0a0c10", padding: "80px 0 96px" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px" }}>
@@ -21,13 +23,13 @@ export default function TrendingSection() {
         <Animate type="fadeInUp">
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div style={{ display: "inline-block", background: "rgba(229,57,53,0.12)", border: "1px solid rgba(229,57,53,0.3)", color: "#EF5350", borderRadius: 20, padding: "4px 16px", fontSize: 13, fontWeight: 600, marginBottom: 16 }}>
-              🔥 Tendances
+              {t.trending.badge}
             </div>
             <h2 style={{ fontSize: "clamp(26px, 3.5vw, 44px)", fontWeight: 800, color: "#FAFAFA", marginBottom: 12 }}>
-              Top 8 du moment
+              {t.trending.title}
             </h2>
             <p style={{ fontSize: 15, color: "#9CA3AF", maxWidth: 500, margin: "0 auto" }}>
-              Films, séries et shows disponibles dès maintenant sur votre abonnement
+              {t.trending.subtitle}
             </p>
           </div>
         </Animate>
@@ -97,7 +99,7 @@ export default function TrendingSection() {
         <Animate type="fadeIn" delay={0.5}>
           <div style={{ textAlign: "center", marginTop: 40 }}>
             <span style={{ fontSize: 13, color: "#6B7280" }}>
-              +70 000 films & séries disponibles · Mis à jour chaque semaine
+              {t.trending.note}
             </span>
           </div>
         </Animate>
