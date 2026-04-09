@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} h-full antialiased`}>
+    <html lang="en" className={`${spaceGrotesk.variable} h-full antialiased dark`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: `window.gtranslate_settings = {"default_language":"en","native_language_names":1,"detect_browser_language":1,"wrapper_selector":".gtranslate_wrapper","float_switcher_open_direction":"bottom","flag_style":"3d"}` }} />
         <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer />
