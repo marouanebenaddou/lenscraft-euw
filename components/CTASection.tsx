@@ -2,10 +2,8 @@
 import { useState, useEffect } from "react";
 import { Zap, PhoneCall } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 export default function CTASection() {
-  const { t, lang } = useLang();
   const [seconds, setSeconds] = useState(6 * 60 * 60);
 
   useEffect(() => {
@@ -26,10 +24,10 @@ export default function CTASection() {
         <Animate type="scaleIn">
           <div style={{ marginBottom: 20 }}><Zap size={48} color="rgba(255,255,255,0.9)" /></div>
           <h2 style={{ fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 800, color: "#FFFFFF", lineHeight: 1.1, marginBottom: 16, letterSpacing: "-1px" }}>
-            {t.cta.title}{" "}
-            <span style={{ color: "#FACC15" }}>{t.cta.titleAccent}</span>
+            Start watching{" "}
+            <span style={{ color: "#FACC15" }}>in 5 minutes</span>
           </h2>
-          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.85)", maxWidth: 520, margin: "0 auto 28px", lineHeight: 1.6 }}>{t.cta.subtitle}</p>
+          <p style={{ fontSize: 18, color: "rgba(255,255,255,0.85)", maxWidth: 520, margin: "0 auto 28px", lineHeight: 1.6 }}>Join thousands of satisfied customers. Test for free, no commitment.</p>
 
           <div style={{ display: "inline-flex", alignItems: "center", gap: 10, backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 24, padding: "8px 24px", marginBottom: 36 }}>
             <span style={{ fontSize: 14, color: "rgba(255,255,255,0.9)" }}>🕒</span>
@@ -41,15 +39,15 @@ export default function CTASection() {
               style={{ display: "flex", alignItems: "center", gap: 8, backgroundColor: "#FFFFFF", color: "#257BF4", border: "none", borderRadius: 10, padding: "14px 32px", fontSize: 16, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.9)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#FFFFFF"; e.currentTarget.style.transform = "translateY(0)"; }}
-            ><PhoneCall size={18} color="#257BF4" />{t.cta.btn1}</button>
+            ><PhoneCall size={18} color="#257BF4" />Try now</button>
             <button onClick={() => document.getElementById("free-test")?.scrollIntoView({ behavior: "smooth" })}
               style={{ display: "flex", alignItems: "center", gap: 8, backgroundColor: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.3)", color: "#FFFFFF", borderRadius: 10, padding: "14px 32px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
-            ><Zap size={18} />{t.cta.btn2}</button>
+            ><Zap size={18} />Free 24h trial</button>
           </div>
           <p style={{ fontSize: 13, color: "rgba(255,255,255,0.75)" }}>
-            ✅ {t.pricing.secure} • ✅ {t.pricing.instant} • ✅ {t.guarantee.badge} 7 {lang === "de" ? "Tage" : lang === "en" ? "days" : "jours"}
+            ✅ 🔒 Secure payment • ✅ ⚡ Instant activation • ✅ Guarantee 7 days
           </p>
         </Animate>
       </div>

@@ -1,7 +1,6 @@
 "use client";
 import { ShieldCheck, Zap, Headphones, RotateCcw, RefreshCw, Wifi, Star } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 const iconData = [
   { icon: <ShieldCheck size={24} color="white" />, gradient: "linear-gradient(135deg, #14B8A6, #06B6D4)" },
@@ -13,8 +12,17 @@ const iconData = [
   { icon: <Star size={24} color="white" />, gradient: "linear-gradient(135deg, #FBBF24, #F59E0B)" },
 ];
 
+const featureItems = [
+  { title: "Satisfaction Guarantee", desc: "7 days to test, full refund if you're not satisfied" },
+  { title: "Instant Activation", desc: "Receive your access in less than 5 minutes after payment" },
+  { title: "VIP Support 7/7", desc: "Technical support available from 10am to 11pm every day" },
+  { title: "7-Day Replay", desc: "Rewatch your programmes from the last 7 days whenever you like" },
+  { title: "Regular Updates", desc: "New channels and content added every week" },
+  { title: "Anti-Freeze Technology", desc: "Optimised servers for buffer-free streaming" },
+  { title: "Premium 4K Quality", desc: "Crystal clear image on all your screens, even in 4K" },
+];
+
 export default function FeaturesSection() {
-  const { t } = useLang();
   return (
     <section style={{ backgroundColor: "#0E1115", padding: "96px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -22,20 +30,20 @@ export default function FeaturesSection() {
         <Animate type="fadeInUp">
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <h2 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, color: "#FAFAFA", marginBottom: 12 }}>
-              {t.features.title}{" "}
+              Everything you need for{" "}
               <span style={{ background: "linear-gradient(to right, #257BF4, #22D3EE)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                {t.features.titleAccent}
+                the perfect streaming
               </span>
             </h2>
             <p style={{ fontSize: 16, color: "#9CA3AF", maxWidth: 600, margin: "0 auto" }}>
-              {t.features.subtitle}
+              Discover all the advantages that make us the European IPTV leader
             </p>
           </div>
         </Animate>
 
         {/* 4-col grid, 7 cards */}
         <div className="features-grid-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
-          {t.features.items.map((f, i) => (
+          {featureItems.map((f, i) => (
             <Animate key={f.title} type="fadeInUp" delay={0.1 + i * 0.07}>
               <div
                 style={{

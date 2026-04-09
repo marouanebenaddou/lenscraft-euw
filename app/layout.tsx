@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/i18n";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -22,8 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} h-full antialiased`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `window.gtranslate_settings = {"default_language":"en","native_language_names":1,"detect_browser_language":1,"wrapper_selector":".gtranslate_wrapper","float_switcher_open_direction":"bottom","flag_style":"3d"}` }} />
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer />
+      </head>
       <body className="min-h-full flex flex-col">
-        <LanguageProvider>{children}</LanguageProvider>
+        <div className="gtranslate_wrapper"></div>
+        {children}
       </body>
     </html>
   );

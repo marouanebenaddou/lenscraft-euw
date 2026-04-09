@@ -3,11 +3,9 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Phone, Clock, Shield, Zap } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 export default function FreeTestSection() {
   const router = useRouter();
-  const { t } = useLang();
   const [whatsapp, setWhatsapp] = useState("");
   const [email, setEmail] = useState("");
 
@@ -62,15 +60,21 @@ export default function FreeTestSection() {
     { icon: <Zap size={20} color="#FBBF24" />, iconBg: "rgba(251,191,36,0.2)" },
   ];
 
+  const features = [
+    { title: "24h Complete", desc: "Unlimited access for 24 hours to all our services" },
+    { title: "No commitment", desc: "No credit card required, automatic cancellation" },
+    { title: "Instant Activation", desc: "Receive your credentials by email in less than 5 minutes" },
+  ];
+
   return (
     <section id="free-test" style={{ backgroundColor: "#0E1115", padding: "96px 0" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <Animate type="fadeInUp">
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <h3 style={{ fontSize: 20, fontWeight: 700, color: "#34D399", marginBottom: 8 }}>
-              {t.freeTest.title} <span style={{ color: "#FAFAFA" }}>{t.freeTest.titleAccent}</span>
+              Test <span style={{ color: "#FAFAFA" }}>Free 24h</span>
             </h3>
-            <p style={{ fontSize: 15, color: "#9CA3AF", maxWidth: 500, margin: "0 auto" }}>{t.freeTest.subtitle}</p>
+            <p style={{ fontSize: 15, color: "#9CA3AF", maxWidth: 500, margin: "0 auto" }}>Try our service for 24 hours completely free. No commitment, no credit card required.</p>
           </div>
         </Animate>
 
@@ -78,12 +82,12 @@ export default function FreeTestSection() {
           <div style={{ backgroundColor: "rgba(17,24,39,0.8)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: 40, maxWidth: 560, margin: "0 auto", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
               <Phone size={22} color="#EC4899" />
-              <span style={{ fontSize: 22, fontWeight: 700, color: "#FAFAFA" }}>{t.freeTest.formTitle}</span>
+              <span style={{ fontSize: 22, fontWeight: 700, color: "#FAFAFA" }}>Request your free trial</span>
             </div>
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
-                <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>{t.freeTest.whatsappLabel}</label>
+                <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>WhatsApp Number</label>
                 <input style={inputStyle} placeholder="+44 7911 123456" type="tel" required value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
                   onFocus={(e) => (e.target.style.borderColor = "#34D399")}
@@ -91,8 +95,8 @@ export default function FreeTestSection() {
                 />
               </div>
               <div>
-                <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>{t.freeTest.emailLabel}</label>
-                <input style={inputStyle} placeholder={t.freeTest.emailPlaceholder} type="email" required value={email}
+                <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>Email address</label>
+                <input style={inputStyle} placeholder="your@email.com" type="email" required value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={(e) => (e.target.style.borderColor = "#34D399")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
@@ -103,15 +107,15 @@ export default function FreeTestSection() {
                 onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(1.1)")}
                 onMouseLeave={(e) => (e.currentTarget.style.filter = "brightness(1)")}
               >
-                <Phone size={18} />{t.freeTest.submitBtn}
+                <Phone size={18} />🚀 Start my free trial
               </button>
-              <p style={{ fontSize: 12, color: "#6B7280", textAlign: "center", marginTop: 8 }}>{t.freeTest.privacy}</p>
+              <p style={{ fontSize: 12, color: "#6B7280", textAlign: "center", marginTop: 8 }}>Your data is protected and never shared with third parties</p>
             </form>
           </div>
         </Animate>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, maxWidth: 680, margin: "48px auto 0" }}>
-          {t.freeTest.features.map((f, i) => (
+          {features.map((f, i) => (
             <Animate key={f.title} type="fadeInUp" delay={0.2 + i * 0.1}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 10 }}>
                 <div style={{ width: 48, height: 48, borderRadius: "50%", backgroundColor: featureIcons[i].iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -125,7 +129,7 @@ export default function FreeTestSection() {
         </div>
 
         <div style={{ backgroundColor: "rgba(17,24,39,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: 24, maxWidth: 560, margin: "32px auto 0", textAlign: "center" }}>
-          <p style={{ fontSize: 13, color: "#9CA3AF" }}>{t.freeTest.note}</p>
+          <p style={{ fontSize: 13, color: "#9CA3AF" }}>📞 After your test, our team contacts you to help you choose the best plan.</p>
         </div>
       </div>
     </section>

@@ -1,16 +1,14 @@
 "use client";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useLang } from "@/lib/i18n";
 
 function ThankYouContent() {
   const router = useRouter();
   const params = useSearchParams();
-  const { t } = useLang();
   const [seconds, setSeconds] = useState(10);
 
   const clientWa = params.get("wa") || "";
-  const waMsg = encodeURIComponent(`${t.thankYou.waMsg}${clientWa}`);
+  const waMsg = encodeURIComponent(`Hello, I would like to test Lenscraft free for 24h. My WhatsApp number: ${clientWa}`);
   const waLink = `https://wa.me/447446248557?text=${waMsg}`;
 
   useEffect(() => {
@@ -22,6 +20,12 @@ function ThankYouContent() {
     }, 1000);
     return () => clearInterval(interval);
   }, [router]);
+
+  const infoItems = [
+    { icon: "⚡", text: "Usual response time: less than 5 minutes" },
+    { icon: "🕒", text: "Support available 7 days/week 10am-11pm" },
+    { icon: "🔒", text: "Your data is secure and confidential" },
+  ];
 
   return (
     <div
@@ -66,7 +70,7 @@ function ThankYouContent() {
             lineHeight: 1.15,
           }}
         >
-          {t.thankYou.heading}
+          Request received successfully!
         </h1>
 
         {/* Sub */}
@@ -80,9 +84,7 @@ function ThankYouContent() {
             margin: "0 auto 40px",
           }}
         >
-          {t.thankYou.subText.split("<strong>")[0]}
-          <strong style={{ color: "#FAFAFA" }}>{t.thankYou.subText.includes("<strong>") ? t.thankYou.subText.split("<strong>")[1]?.split("</strong>")[0] : ""}</strong>
-          {t.thankYou.subText.includes("</strong>") ? t.thankYou.subText.split("</strong>")[1] : ""}
+          Thank you for your interest. A Lenscraft agent will contact you very soon on your WhatsApp to set up your free trial or finalize your subscription.
         </p>
 
         {/* Info card */}
@@ -96,7 +98,7 @@ function ThankYouContent() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {t.thankYou.infoItems.map((item) => (
+            {infoItems.map((item) => (
               <div key={item.text} style={{ display: "flex", alignItems: "center", gap: 12, textAlign: "left" }}>
                 <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
                 <span style={{ fontSize: 14, color: "#9CA3AF", lineHeight: 1.5 }}>{item.text}</span>
@@ -129,7 +131,7 @@ function ThankYouContent() {
           onMouseLeave={(e) => { e.currentTarget.style.filter = "brightness(1)"; e.currentTarget.style.transform = "translateY(0)"; }}
         >
           <span style={{ fontSize: 22 }}>💬</span>
-          {t.thankYou.contactBtn}
+          Contact on WhatsApp now
         </a>
 
         {/* Back link */}
@@ -145,7 +147,7 @@ function ThankYouContent() {
               fontFamily: "inherit",
             }}
           >
-            {t.thankYou.backBtn} ({seconds}s)
+            ← Back to site ({seconds}s)
           </button>
         </div>
       </div>

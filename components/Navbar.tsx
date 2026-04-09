@@ -1,17 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PhoneCall, Menu, X } from "@/components/icons";
-import { useLang, Lang } from "@/lib/i18n";
-
-const flags: Record<Lang, string> = { en: "🇬🇧", fr: "🇫🇷", de: "🇩🇪" };
-const langLabels: Record<Lang, string> = { en: "EN", fr: "FR", de: "DE" };
 
 export default function Navbar() {
-  const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -27,9 +21,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: t.nav.pricing, href: "#pricing" },
-    { label: t.nav.howItWorks, href: "#comment-ca-marche" },
-    { label: t.nav.support, href: "#support" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "How it works", href: "#comment-ca-marche" },
+    { label: "Support", href: "#support" },
   ];
 
   const scrollToForm = () => {
@@ -77,41 +71,6 @@ export default function Navbar() {
           {/* Right controls */}
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
 
-            {/* Language switcher */}
-            <div style={{ position: "relative" }}>
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                style={{
-                  display: "flex", alignItems: "center", gap: 6, fontSize: 13,
-                  fontWeight: 600, color: "#FAFAFA", background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8,
-                  padding: "6px 10px", cursor: "pointer", fontFamily: "inherit",
-                }}
-              >
-                {flags[lang]} {langLabels[lang]}
-              </button>
-              {langOpen && (
-                <div style={{
-                  position: "absolute", top: "110%", right: 0, backgroundColor: "#1a1f2e",
-                  border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10,
-                  overflow: "hidden", zIndex: 100, minWidth: 100,
-                }}>
-                  {(["en", "fr", "de"] as Lang[]).map((l) => (
-                    <button key={l} onClick={() => { setLang(l); setLangOpen(false); }}
-                      style={{
-                        display: "flex", alignItems: "center", gap: 8, width: "100%",
-                        padding: "10px 14px", background: l === lang ? "rgba(37,123,244,0.2)" : "transparent",
-                        border: "none", color: "#FAFAFA", fontSize: 13, fontWeight: 500,
-                        cursor: "pointer", fontFamily: "inherit", textAlign: "left",
-                      }}
-                    >
-                      {flags[l]} {langLabels[l]}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
             {!isMobile && (
               <button onClick={scrollToForm} style={{
                 display: "flex", alignItems: "center", gap: 8, fontSize: 14,
@@ -123,7 +82,7 @@ export default function Navbar() {
                 onMouseLeave={(e) => (e.currentTarget.style.background = "#257BF4")}
               >
                 <PhoneCall size={14} />
-                {t.nav.contact}
+                Contact
               </button>
             )}
 
@@ -133,7 +92,7 @@ export default function Navbar() {
                 border: "none", borderRadius: 8, padding: "7px 12px",
                 cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap",
               }}>
-                {t.nav.tryFree}
+                Try Free
               </button>
             )}
 

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { Check, Zap, Crown } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 function StatCard({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
   return (
@@ -80,9 +79,49 @@ const paymentMethods = [
   { name: "Crypto", img: "/images/payments/binance.png", badge: null },
 ];
 
-export default function PricingSection() {
-  const { t } = useLang();
+const premiumStats = [
+  { value: "+25,000", label: "HD/4K Channels" },
+  { value: "+35,000", label: "Films & Series" },
+  { value: "1 App", label: "Included" },
+  { value: "Stable", label: "Connection" },
+];
 
+const goldStats = [
+  { value: "+35,000", label: "4K Channels" },
+  { value: "+70,000", label: "Films & Series" },
+  { value: "3 Apps", label: "On 1 device" },
+  { value: "Anti-Freeze", label: "Technology" },
+];
+
+const premiumFeatures = [
+  "HD / 4K quality on all your screens",
+  "1 IPTV App included",
+  "1 device connected simultaneously",
+  "Immediate activation in 5 min",
+  "WhatsApp support 7 days/week",
+  "Compatible Smart TV, Box, Mobile, PC",
+  "Automatic updates",
+  "International channels included",
+];
+
+const goldFeatures = [
+  "Premium 4K Ultra HD quality",
+  "3 IPTV Apps included",
+  "1 device connected simultaneously",
+  "Exclusive Anti-Freeze technology",
+  "24h Replay on selected channels",
+  "Complete EPG electronic guide",
+  "24/7 priority support",
+  "Compatible with all devices",
+  "Automatic updates",
+  "Premium international content",
+  "VOD Netflix, Prime, Disney+…",
+  "Immediate activation in 5 min",
+];
+
+const trustItems = ["🔒 Secure payment", "⚡ Instant activation", "🛡 Dedicated support"];
+
+export default function PricingSection() {
   const tealBtnStyle: React.CSSProperties = {
     backgroundColor: "rgba(6,182,212,0.15)",
     color: "#67E8F9",
@@ -99,13 +138,13 @@ export default function PricingSection() {
         <Animate type="fadeInUp">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ display: "inline-block", border: "1px solid rgba(255,255,255,0.15)", color: "#D1D5DB", borderRadius: 20, padding: "4px 16px", fontSize: 13, marginBottom: 20 }}>
-            💎 {t.pricing.badge}
+            💎 Exclusive Offers
           </div>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, color: "#FAFAFA", marginBottom: 12 }}>
-            {t.pricing.title}
+            Premium Streaming Subscription
           </h2>
           <p style={{ fontSize: 14, color: "#9CA3AF" }}>
-            {t.pricing.subtitle}
+            🎥 Unlimited access to +40,000 Films & Series + 35,000 Live TV channels - Guaranteed 4K quality without interruption!
           </p>
         </div>
         </Animate>
@@ -115,36 +154,36 @@ export default function PricingSection() {
         <div style={{ backgroundColor: "#111827", border: "1px solid rgba(34,211,238,0.3)", borderRadius: 20, padding: "36px 32px", marginBottom: 24 }}>
           <div style={{ textAlign: "center", marginBottom: 28 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, backgroundColor: "rgba(34,211,238,0.15)", color: "#22D3EE", border: "1px solid rgba(34,211,238,0.3)", borderRadius: 20, padding: "4px 16px", fontSize: 12, fontWeight: 700, letterSpacing: 1.5, marginBottom: 16 }}>
-              <Zap size={12} /> {t.pricing.premium}
+              <Zap size={12} /> PREMIUM
             </div>
-            <h3 style={{ fontSize: 32, fontWeight: 800, color: "#FAFAFA", marginBottom: 6 }}>{t.pricing.premiumTitle}</h3>
-            <p style={{ fontSize: 14, color: "#9CA3AF" }}>{t.pricing.premiumSubtitle}</p>
+            <h3 style={{ fontSize: 32, fontWeight: 800, color: "#FAFAFA", marginBottom: 6 }}>Premium Offer</h3>
+            <p style={{ fontSize: 14, color: "#9CA3AF" }}>The essentials of quality streaming</p>
           </div>
 
           {/* 4 stat cards */}
           <div className="stat-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 24 }}>
-            {t.pricing.premiumStats.map((s, i) => (
+            {premiumStats.map((s, i) => (
               <StatCard key={i} icon={<span style={{ fontSize: 22 }}>{icons[i]}</span>} value={s.value} label={s.label} />
             ))}
           </div>
 
           {/* Features */}
           <div className="mobile-1col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px", marginBottom: 28 }}>
-            {t.pricing.premiumFeatures.map((f) => <FeatureCheck key={f} text={f} accent="#22D3EE" />)}
+            {premiumFeatures.map((f) => <FeatureCheck key={f} text={f} accent="#22D3EE" />)}
           </div>
 
           {/* Price cols */}
           <div className="price-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-            <PriceCol currency={t.pricing.currency} months={t.pricing.device1} original={`59${t.pricing.currency}`} price="39" perMonth={`39${t.pricing.currency}${t.pricing.perYear}`} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
-            <PriceCol currency={t.pricing.currency} months={t.pricing.device2} original={`89${t.pricing.currency}`} price="59" perMonth={`59${t.pricing.currency}${t.pricing.perYear}`} badge="-33%" btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
-            <PriceCol currency={t.pricing.currency} months={t.pricing.device3} original={`109${t.pricing.currency}`} price="79" perMonth={`79${t.pricing.currency}${t.pricing.perYear}`} badge="BEST VALUE" extra={t.pricing.gift} btnLabel={t.pricing.tryBtn} btnStyle={tealBtnStyle} />
+            <PriceCol currency="€" months="1 DEVICE" original="59€" price="39" perMonth="39€/year" btnLabel="🎁 Try" btnStyle={tealBtnStyle} />
+            <PriceCol currency="€" months="2 DEVICES" original="89€" price="59" perMonth="59€/year" badge="-33%" btnLabel="🎁 Try" btnStyle={tealBtnStyle} />
+            <PriceCol currency="€" months="3 DEVICES" original="109€" price="79" perMonth="79€/year" badge="BEST VALUE" extra="🌟 Best value" btnLabel="🎁 Try" btnStyle={tealBtnStyle} />
           </div>
         </div>
         </Animate>
 
         {/* Divider */}
         <div style={{ textAlign: "center", margin: "24px 0", color: "#9CA3AF", fontSize: 12, fontWeight: 600, letterSpacing: 2 }}>
-          {t.pricing.divider}
+          ⬆ UPGRADE TO NEXT LEVEL
         </div>
 
         {/* GOLD PLAN */}
@@ -152,58 +191,58 @@ export default function PricingSection() {
         <div style={{ position: "relative", backgroundColor: "#111827", border: "2px solid rgba(251,191,36,0.5)", borderRadius: 20, padding: "48px 32px 36px", boxShadow: "0 0 40px rgba(251,191,36,0.08)", marginBottom: 32 }}>
           {/* Recommended badge */}
           <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg, #FBBF24, #F59E0B)", color: "#0E1115", borderRadius: 20, padding: "5px 20px", fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 6 }}>
-            <Crown size={13} /> {t.pricing.recommended}
+            <Crown size={13} /> RECOMMENDED
           </div>
 
           <div style={{ textAlign: "center", marginBottom: 28 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, backgroundColor: "rgba(251,191,36,0.15)", color: "#FBBF24", border: "1px solid rgba(251,191,36,0.3)", borderRadius: 20, padding: "4px 16px", fontSize: 12, fontWeight: 700, letterSpacing: 1.5, marginBottom: 16 }}>
-              <Crown size={12} /> {t.pricing.gold}
+              <Crown size={12} /> PREMIUM GOLD
             </div>
             <h3 style={{ fontSize: 32, fontWeight: 800, color: "#FAFAFA", marginBottom: 6 }}>
-              {t.pricing.goldTitle}
+              Premium GOLD Offer
             </h3>
-            <p style={{ fontSize: 14, color: "#9CA3AF", marginBottom: 12 }}>{t.pricing.goldSubtitle}</p>
+            <p style={{ fontSize: 14, color: "#9CA3AF", marginBottom: 12 }}>The ultimate streaming experience • All included</p>
             <p style={{ fontSize: 15, color: "#9CA3AF", maxWidth: 560, margin: "0 auto" }}>
-              {t.pricing.goldDesc1}{" "}
-              <strong style={{ color: "#FBBF24" }}>{t.pricing.goldDesc2}</strong>{" "}
-              {t.pricing.goldDesc3}{" "}
-              <strong style={{ color: "#FBBF24" }}>{t.pricing.goldDesc4}</strong>
+              Enjoy unlimited access to more than{" "}
+              <strong style={{ color: "#FBBF24" }}>thirty-five thousand channels</strong>{" "}
+              live and more than{" "}
+              <strong style={{ color: "#FBBF24" }}>seventy thousand films and series</strong>
             </p>
           </div>
 
           {/* 4 gold stat cards */}
           <div className="stat-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 24 }}>
-            {t.pricing.goldStats.map((s, i) => (
+            {goldStats.map((s, i) => (
               <StatCard key={i} icon={<span style={{ fontSize: 22 }}>{goldIcons[i]}</span>} value={s.value} label={s.label} />
             ))}
           </div>
 
           {/* Gold features */}
           <div style={{ marginBottom: 6 }}>
-            <div style={{ fontSize: 13, color: "#FBBF24", fontWeight: 600, marginBottom: 12 }}>{t.pricing.goldAdvantages}</div>
+            <div style={{ fontSize: 13, color: "#FBBF24", fontWeight: 600, marginBottom: 12 }}>⭐ Exclusive Gold benefits</div>
             <div className="mobile-1col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px", marginBottom: 16 }}>
-              {t.pricing.goldFeatures.map((f) => <FeatureCheck key={f} text={f} accent="#FBBF24" />)}
+              {goldFeatures.map((f) => <FeatureCheck key={f} text={f} accent="#FBBF24" />)}
             </div>
-            <p style={{ fontSize: 12, color: "#9CA3AF" }}>{t.pricing.premiumVsGold}</p>
+            <p style={{ fontSize: 12, color: "#9CA3AF" }}>Premium: 1 App → Gold: 3 Apps on the same device</p>
           </div>
 
           {/* Gold price cols */}
           <div className="price-cols-mobile" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 24 }}>
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device1} original={`89${t.pricing.currency}`} price="59" perMonth={`59${t.pricing.currency}${t.pricing.perYear}`} btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device2} original={`109${t.pricing.currency}`} price="79" perMonth={`79${t.pricing.currency}${t.pricing.perYear}`} badge="-27%" badgeBg="#FBBF24" btnLabel={t.pricing.tryBtn} btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
-            <GoldPriceCol currency={t.pricing.currency} replayBadge={t.pricing.replayBadge} months={t.pricing.device3} original={`139${t.pricing.currency}`} price="99" perMonth={`99${t.pricing.currency}${t.pricing.perYear}`} badge="BEST VALUE" badgeBg="#FBBF24" btnLabel={t.pricing.chooseBtn} btnStyle={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)", color: "#0E1115", fontWeight: 700 }} />
+            <GoldPriceCol currency="€" replayBadge="↺ Replay 24h" months="1 DEVICE" original="89€" price="59" perMonth="59€/year" btnLabel="🎁 Try" btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
+            <GoldPriceCol currency="€" replayBadge="↺ Replay 24h" months="2 DEVICES" original="109€" price="79" perMonth="79€/year" badge="-27%" badgeBg="#FBBF24" btnLabel="🎁 Try" btnStyle={{ backgroundColor: "rgba(17,24,39,0.8)", color: "#FAFAFA" }} />
+            <GoldPriceCol currency="€" replayBadge="↺ Replay 24h" months="3 DEVICES" original="139€" price="99" perMonth="99€/year" badge="BEST VALUE" badgeBg="#FBBF24" btnLabel="🔥 Choose" btnStyle={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)", color: "#0E1115", fontWeight: 700 }} />
           </div>
         </div>
         </Animate>
 
         {/* Payment discount banner */}
         <div style={{ backgroundColor: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 12, padding: "14px 24px", textAlign: "center", color: "#34D399", fontSize: 14, fontWeight: 500, marginBottom: 40 }}>
-          {t.pricing.discount10}
+          💳 -10% discount for card payment
         </div>
 
         {/* Payment methods */}
         <h3 style={{ fontSize: 18, fontWeight: 600, color: "#FAFAFA", textAlign: "center", marginBottom: 24 }}>
-          {t.pricing.paymentTitle}
+          Accepted payment methods
         </h3>
         <div className="mobile-2col" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12, marginBottom: 24 }}>
           {paymentMethods.map((p) => (
@@ -221,7 +260,7 @@ export default function PricingSection() {
 
         {/* Trust row */}
         <div style={{ display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap" }}>
-          {[t.pricing.secure, t.pricing.instant, t.pricing.dedicated].map((item) => (
+          {trustItems.map((item) => (
             <span key={item} style={{ fontSize: 13, color: "#9CA3AF" }}>{item}</span>
           ))}
         </div>

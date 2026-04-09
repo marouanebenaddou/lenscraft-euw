@@ -1,10 +1,14 @@
 "use client";
 import { ShieldCheck } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
+
+const guaranteeStats = [
+  { value: "100%", label: "Refund", desc: "Full refund if the service doesn't suit you" },
+  { value: "Test", label: "7 Days to", desc: "A full week to discover all the features" },
+  { value: "Dedicated", label: "Support", desc: "Our team accompanies you throughout your trial" },
+];
 
 export default function GuaranteeSection() {
-  const { t } = useLang();
   return (
     <section style={{ backgroundColor: "#0A0D11", padding: "96px 0", textAlign: "center" }}>
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "0 24px" }}>
@@ -18,20 +22,20 @@ export default function GuaranteeSection() {
         {/* Heading */}
         <Animate type="fadeInUp" delay={0.1}>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 800, marginBottom: 16, lineHeight: 1.1 }}>
-            <span style={{ color: "#FAFAFA" }}>{t.guarantee.title} </span>
-            <span style={{ background: "linear-gradient(to right, #E63333, #EC4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{t.guarantee.titleAccent}</span>
+            <span style={{ color: "#FAFAFA" }}>Satisfied or </span>
+            <span style={{ background: "linear-gradient(to right, #E63333, #EC4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>refunded</span>
           </h2>
         </Animate>
 
         <Animate type="fadeInUp" delay={0.2}>
           <p style={{ fontSize: 18, color: "#9CA3AF", maxWidth: 580, margin: "0 auto 56px", lineHeight: 1.6 }}>
-            {t.guarantee.subtitle}
+            7 days to test our service. If you&apos;re not satisfied, we refund you — no questions asked.
           </p>
         </Animate>
 
         {/* Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, maxWidth: 800, margin: "0 auto" }}>
-          {t.guarantee.stats.map((s, i) => (
+          {guaranteeStats.map((s, i) => (
             <Animate key={s.value} type="fadeInUp" delay={0.3 + i * 0.1}>
               <div style={{ backgroundColor: "rgba(17,24,39,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 16, padding: "32px 24px" }}>
                 <div style={{ fontSize: 40, fontWeight: 800, color: "#FAFAFA", marginBottom: 6 }}>{s.value}</div>

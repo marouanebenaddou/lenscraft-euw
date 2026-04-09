@@ -1,6 +1,5 @@
 "use client";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 function FooterCol({ title, items }: { title: string; items: string[] }) {
   return (
@@ -27,7 +26,6 @@ function FooterCol({ title, items }: { title: string; items: string[] }) {
 }
 
 export default function Footer() {
-  const { t } = useLang();
   return (
     <footer style={{ backgroundColor: "#080B0F", paddingTop: 64, paddingBottom: 32, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -57,19 +55,19 @@ export default function Footer() {
               Lenscraft
             </div>
             <p style={{ fontSize: 14, color: "#9CA3AF", lineHeight: 1.6, marginTop: 12, maxWidth: 220 }}>
-              {t.footer.tagline}
+              Premium IPTV — HD/4K quality, 35,000+ channels, instant activation.
             </p>
           </div>
 
-          <FooterCol title={t.footer.servicesTitle} items={t.footer.services} />
-          <FooterCol title={t.footer.contactTitle} items={t.footer.contact} />
-          <FooterCol title={t.footer.coverageTitle} items={t.footer.coverageItems} />
-          <FooterCol title={t.footer.legal} items={t.footer.legalItems} />
+          <FooterCol title="Services" items={["Premium Subscriptions", "4K Films & Series", "Live Sport", "24/7 Support"]} />
+          <FooterCol title="Contact" items={["📞 +447446248557", "📧 contact@lensscrafts.com", "🕒 Support 7d/7 10am-11pm"]} />
+          <FooterCol title="Coverage" items={["🌍 Europe", "🌍 America", "🌍 Africa", "🌍 Worldwide"]} />
+          <FooterCol title="Legal" items={["About", "Terms & Conditions", "Privacy Policy", "Refund Policy", "Contact"]} />
         </div>
 
         {/* Copyright */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginTop: 48, paddingTop: 24, textAlign: "center" }}>
-          <p style={{ fontSize: 13, color: "#6B7280" }}>{t.footer.copyrightText}</p>
+          <p style={{ fontSize: 13, color: "#6B7280" }}>© 2024 Lenscraft — All rights reserved.</p>
         </div>
         </Animate>
       </div>

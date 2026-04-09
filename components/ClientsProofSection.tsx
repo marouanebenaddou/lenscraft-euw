@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Shield } from "@/components/icons";
 import { Animate } from "@/components/Animate";
-import { useLang } from "@/lib/i18n";
 
 const clientImgs = [
   { img: "/images/whatsapp-proof-1.jpeg", stars: 5 },
@@ -15,6 +14,24 @@ const clientImgs = [
   { img: "/images/whatsapp-proof-7.jpeg", stars: 5 },
   { img: "/images/whatsapp-proof-9.jpeg", stars: 4 },
   { img: "/images/whatsapp-proof-10.jpeg", stars: 5 },
+];
+
+const clientLabels = [
+  "UK Client — Wise payment",
+  "EU Client — PayPal payment",
+  "UK Client — Card payment",
+  "EU Client — Bank transfer",
+  "UK Client — Revolut payment",
+  "EU Client — PayPal payment",
+  "UK Client — Bank transfer",
+  "EU Client — Card payment",
+  "UK Client — Wise payment",
+];
+
+const stats = [
+  { value: "10,000+", label: "Satisfied Customers" },
+  { value: "4.9/5", label: "Average Rating" },
+  { value: "98%", label: "Satisfaction Rate" },
 ];
 
 const VISIBLE = 3;
@@ -48,7 +65,6 @@ function WhatsAppCard({ img, label, stars }: { img: string; label: string; stars
 }
 
 export default function ClientsProofSection() {
-  const { t } = useLang();
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -80,17 +96,17 @@ export default function ClientsProofSection() {
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, border: "1px solid #34D399", borderRadius: 20, padding: "5px 16px" }}>
               <Shield size={14} color="#34D399" />
-              <span style={{ fontSize: 13, color: "#34D399", fontWeight: 500 }}>{t.clients.badge}</span>
+              <span style={{ fontSize: 13, color: "#34D399", fontWeight: 500 }}>Payment Proof</span>
             </div>
           </div>
           <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, color: "#FAFAFA", textAlign: "center", marginBottom: 12 }}>
-            {t.clients.title}{" "}
+            +10,000 Satisfied{" "}
             <span style={{ background: "linear-gradient(to right, #34D399, #22D3EE)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              {t.clients.titleAccent}
+              Customers
             </span>
           </h2>
           <p style={{ fontSize: 16, color: "#9CA3AF", textAlign: "center", marginBottom: 48 }}>
-            {t.clients.subtitle}
+            Real proof from our customers — verified payments and subscriptions activated live
           </p>
         </Animate>
 
@@ -103,7 +119,7 @@ export default function ClientsProofSection() {
           <div style={{ overflow: "hidden" }}>
             <div style={{ display: "flex", gap: 16, transition: "transform 0.3s ease", transform: isMobile ? `translateX(calc(-${index} * (100% + 16px)))` : `translateX(calc(-${index} * (33.333% + 5.333px)))` }}>
               {clientImgs.map((c, i) => (
-                <WhatsAppCard key={i} img={c.img} label={t.clients.items[i] || ""} stars={c.stars} />
+                <WhatsAppCard key={i} img={c.img} label={clientLabels[i] || ""} stars={c.stars} />
               ))}
             </div>
           </div>
@@ -115,7 +131,7 @@ export default function ClientsProofSection() {
 
         {/* Stats */}
         <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
-          {[t.clients.stat1, t.clients.stat2, t.clients.stat3].map((s, i) => (
+          {stats.map((s, i) => (
             <Animate key={i} type="fadeInUp" delay={0.1 + i * 0.1}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "clamp(36px, 4vw, 52px)", fontWeight: 800, color: "#34D399" }}>{s.value}</div>
