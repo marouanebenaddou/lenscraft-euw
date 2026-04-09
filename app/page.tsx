@@ -30,14 +30,14 @@ export default function Home() {
         <section id="hero">
           <HeroSection />
         </section>
-        <section id="clients">
-          <ClientsProofSection />
-        </section>
         <section id="trending">
           <TrendingSection />
         </section>
         <section id="pricing">
           <PricingSection />
+        </section>
+        <section id="clients">
+          <ClientsProofSection />
         </section>
         <HowItWorksSection />
         <ChannelSearchSection />

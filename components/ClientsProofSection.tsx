@@ -5,15 +5,18 @@ import { ChevronLeft, ChevronRight, Shield } from "@/components/icons";
 import { Animate } from "@/components/Animate";
 
 const clientImgs = [
-  { img: "/images/whatsapp-proof-1.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-2.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-3.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-4.jpeg", stars: 4 },
-  { img: "/images/whatsapp-proof-5.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-6.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-7.jpeg", stars: 5 },
-  { img: "/images/whatsapp-proof-9.jpeg", stars: 4 },
-  { img: "/images/whatsapp-proof-10.jpeg", stars: 5 },
+  { img: "/images/whatsapp-proof-1.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-2.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-3.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-4.webp", stars: 4 },
+  { img: "/images/whatsapp-proof-5.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-6.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-7.webp", stars: 5 },
+  { img: "/images/whatsapp-proof-8.webp", stars: 4 },
+  { img: "/images/whatsapp-proof-9.jpg", stars: 5 },
+  { img: "/images/whatsapp-proof-10.jpg", stars: 5 },
+  { img: "/images/whatsapp-proof-11.jpg", stars: 5 },
+  { img: "/images/whatsapp-proof-12.jpg", stars: 5 },
 ];
 
 const clientLabels = [
@@ -26,6 +29,9 @@ const clientLabels = [
   "UK Client — Bank transfer",
   "EU Client — Card payment",
   "UK Client — Wise payment",
+  "EU Client — Bank transfer",
+  "UK Client — Revolut payment",
+  "EU Client — Card payment",
 ];
 
 const stats = [
