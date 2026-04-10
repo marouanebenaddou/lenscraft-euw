@@ -4,29 +4,58 @@ import { useRouter } from "next/navigation";
 import { Phone, Clock, Shield, Zap } from "@/components/icons";
 import { Animate } from "@/components/Animate";
 
+const COUNTRY_DATA: Record<string, { code: string; flag: string }> = {
+  // Europe
+  GB: { code: "+44",  flag: "🇬🇧" }, IE: { code: "+353", flag: "🇮🇪" },
+  FR: { code: "+33",  flag: "🇫🇷" }, DE: { code: "+49",  flag: "🇩🇪" },
+  ES: { code: "+34",  flag: "🇪🇸" }, IT: { code: "+39",  flag: "🇮🇹" },
+  NL: { code: "+31",  flag: "🇳🇱" }, BE: { code: "+32",  flag: "🇧🇪" },
+  PT: { code: "+351", flag: "🇵🇹" }, CH: { code: "+41",  flag: "🇨🇭" },
+  AT: { code: "+43",  flag: "🇦🇹" }, SE: { code: "+46",  flag: "🇸🇪" },
+  NO: { code: "+47",  flag: "🇳🇴" }, DK: { code: "+45",  flag: "🇩🇰" },
+  FI: { code: "+358", flag: "🇫🇮" }, PL: { code: "+48",  flag: "🇵🇱" },
+  RO: { code: "+40",  flag: "🇷🇴" }, CZ: { code: "+420", flag: "🇨🇿" },
+  GR: { code: "+30",  flag: "🇬🇷" }, CY: { code: "+357", flag: "🇨🇾" },
+  HU: { code: "+36",  flag: "🇭🇺" }, SK: { code: "+421", flag: "🇸🇰" },
+  HR: { code: "+385", flag: "🇭🇷" }, BG: { code: "+359", flag: "🇧🇬" },
+  LU: { code: "+352", flag: "🇱🇺" }, MT: { code: "+356", flag: "🇲🇹" },
+  // North Africa & Middle East
+  MA: { code: "+212", flag: "🇲🇦" }, DZ: { code: "+213", flag: "🇩🇿" },
+  TN: { code: "+216", flag: "🇹🇳" }, EG: { code: "+20",  flag: "🇪🇬" },
+  SA: { code: "+966", flag: "🇸🇦" }, AE: { code: "+971", flag: "🇦🇪" },
+  QA: { code: "+974", flag: "🇶🇦" }, KW: { code: "+965", flag: "🇰🇼" },
+  TR: { code: "+90",  flag: "🇹🇷" },
+  // Africa
+  SN: { code: "+221", flag: "🇸🇳" }, CI: { code: "+225", flag: "🇨🇮" },
+  CM: { code: "+237", flag: "🇨🇲" },
+  // Americas & Oceania
+  US: { code: "+1",   flag: "🇺🇸" }, CA: { code: "+1",   flag: "🇨🇦" },
+  BR: { code: "+55",  flag: "🇧🇷" }, MX: { code: "+52",  flag: "🇲🇽" },
+  AU: { code: "+61",  flag: "🇦🇺" },
+};
+
+const DEFAULT = { code: "+44", flag: "🇬🇧" }; // fallback: UK
+
 export default function FreeTestSection() {
   const router = useRouter();
-  const [whatsapp, setWhatsapp] = useState("");
+  const [prefix, setPrefix] = useState(DEFAULT);
+  const [localNumber, setLocalNumber] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const callingCodes: Record<string, string> = {
-      MA: "+212", FR: "+33", BE: "+32", CH: "+41", ES: "+34", IT: "+39",
-      DE: "+49", GB: "+44", NL: "+31", PT: "+351", CA: "+1", US: "+1",
-      DZ: "+213", TN: "+216", SN: "+221", CI: "+225", CM: "+237",
-      SA: "+966", AE: "+971", QA: "+974", KW: "+965", EG: "+20",
-      TR: "+90", SE: "+46", NO: "+47", DK: "+45", FI: "+358",
-      PL: "+48", RO: "+40", AU: "+61", BR: "+55", MX: "+52",
-    };
     fetch("https://ipinfo.io/json")
       .then((r) => r.json())
-      .then((data) => { const code = callingCodes[data.country]; if (code) setWhatsapp(code); })
+      .then((data) => {
+        const found = COUNTRY_DATA[data.country as string];
+        if (found) setPrefix(found);
+      })
       .catch(() => {});
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const cleanWa = whatsapp.replace(/^(\+\d+)\s*0+/, "$1");
+    const digits = localNumber.replace(/^0+/, "");
+    const cleanWa = `${prefix.code}${digits}`;
     const payload = {
       object: "page",
       entry: [{ changes: [{ field: "leadgen", value: {
@@ -95,11 +124,31 @@ export default function FreeTestSection() {
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
                 <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>WhatsApp Number</label>
-                <input style={inputStyle} placeholder="+44 7911 123456" type="tel" required value={whatsapp}
-                  onChange={(e) => setWhatsapp(e.target.value)}
-                  onFocus={(e) => (e.target.style.borderColor = "#34D399")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
-                />
+                <div style={{ display: "flex", gap: 8 }}>
+                  {/* Locked country prefix pill */}
+                  <div style={{
+                    display: "flex", alignItems: "center", gap: 6,
+                    backgroundColor: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: 8, padding: "12px 14px",
+                    color: "#FAFAFA", fontSize: 15, whiteSpace: "nowrap",
+                    userSelect: "none", flexShrink: 0,
+                  }}>
+                    <span style={{ fontSize: 20 }}>{prefix.flag}</span>
+                    <span style={{ fontWeight: 600 }}>{prefix.code}</span>
+                  </div>
+                  {/* Local number input */}
+                  <input
+                    style={{ ...inputStyle, flex: 1 }}
+                    placeholder="7911 123456"
+                    type="tel"
+                    required
+                    value={localNumber}
+                    onChange={(e) => setLocalNumber(e.target.value)}
+                    onFocus={(e) => (e.target.style.borderColor = "#34D399")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                  />
+                </div>
               </div>
               <div>
                 <label style={{ fontSize: 14, fontWeight: 500, color: "rgba(250,250,250,0.8)", display: "block", marginBottom: 6 }}>Email address</label>
