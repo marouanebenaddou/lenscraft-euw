@@ -23,7 +23,7 @@ const goldPrices: Record<number, { price: string; original: string; perYear: str
 
 const premiumFeatures = [
   "HD / 4K quality on all your screens",
-  "1 IPTV App included",
+  "Works with any player",
   "1 device simultaneously",
   "Activation in under 5 minutes",
   "WhatsApp support 7 days/week",
@@ -34,7 +34,7 @@ const premiumFeatures = [
 
 const goldFeatures = [
   "Premium 4K Ultra HD quality",
-  "3 IPTV Apps included",
+  "Works with any player",
   "1 device simultaneously",
   "Exclusive Anti-Freeze technology",
   "24h Replay on selected channels",
