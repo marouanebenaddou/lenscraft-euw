@@ -32,6 +32,7 @@ jobs:
         run: |
           lftp -e "
             set ftp:ssl-allow no;
+            set ftp:transfer-mode binary;
             set ftp:passive-mode yes;
             set net:timeout 60;
             set net:max-retries 5;
