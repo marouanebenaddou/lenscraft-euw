@@ -6,6 +6,7 @@ import { CheckCircle2, Star, Zap, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Animate } from "@/components/Animate";
 import * as PricingCard from "@/components/ui/pricing-card";
+import FOMOBar from "@/components/FOMOBar";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -204,6 +205,8 @@ export default function PricingSection() {
             </p>
           </div>
         </Animate>
+
+        <FOMOBar />
 
         {/* ── MOBILE: 2 cards with device selector ── */}
         <div className="md:hidden grid grid-cols-1 gap-6 mb-10">
