@@ -16,6 +16,7 @@ import FAQSection from "@/components/FAQSection";
 import SupportSection from "@/components/SupportSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import AdultSection from "@/components/AdultSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import FloatingCTA from "@/components/FloatingCTA";
 import FOMOToast from "@/components/FOMOToast";
@@ -74,6 +75,7 @@ export default function Home() {
           <SupportSection />
         </section>
         <CTASection />
+        <AdultSection />
       </main>
       <Footer />
     </>
