@@ -28,7 +28,7 @@ jobs:
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
-      - name: Deploy to Hostinger via FTP
+      - name: Deploy to main domain
         run: |
           lftp -e "
             set ftp:ssl-allow no;
@@ -38,6 +38,20 @@ jobs:
             set net:max-retries 5;
             set net:reconnect-interval-base 5;
             open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }};
+            mirror -R --delete --no-perms ./out/ /public_html/;
+            quit
+          "
+
+      - name: Deploy to lensscraft.de
+        run: |
+          lftp -e "
+            set ftp:ssl-allow no;
+            set ftp:transfer-mode binary;
+            set ftp:passive-mode yes;
+            set net:timeout 60;
+            set net:max-retries 5;
+            set net:reconnect-interval-base 5;
+            open -u ${{ secrets.LENSSCRAFT_DE_FTP_USERNAME }},${{ secrets.LENSSCRAFT_DE_FTP_PASSWORD }} ${{ secrets.LENSSCRAFT_DE_FTP_SERVER }};
             mirror -R --delete --no-perms ./out/ /public_html/;
             quit
           "
