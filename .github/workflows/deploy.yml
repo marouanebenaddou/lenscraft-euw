@@ -55,3 +55,17 @@ jobs:
             mirror -R --delete --no-perms ./out/ /public_html/;
             quit
           "
+
+      - name: Deploy to atlasstv.com
+        run: |
+          lftp -e "
+            set ftp:ssl-allow no;
+            set ftp:transfer-mode binary;
+            set ftp:passive-mode yes;
+            set net:timeout 60;
+            set net:max-retries 5;
+            set net:reconnect-interval-base 5;
+            open -u ${{ secrets.ATLASSTV_FTP_USERNAME }},${{ secrets.ATLASSTV_FTP_PASSWORD }} ${{ secrets.ATLASSTV_FTP_SERVER }};
+            mirror -R --delete --no-perms ./out/ /public_html/;
+            quit
+          "

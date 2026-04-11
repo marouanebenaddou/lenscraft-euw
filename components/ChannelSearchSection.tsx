@@ -41,6 +41,7 @@ const COUNTRY_SUGGESTIONS: Record<string, string[]> = {
 };
 
 const DEFAULT_SUGGESTIONS = ["Das Erste", "ZDF", "RTL", "Sky Sport", "ProSieben", "Bundesliga TV"];
+const ATLAS_SUGGESTIONS   = ["RIK 1", "Sigma TV", "Alpha Cyprus", "CYTA Sport", "Nova Sports", "ANT1 Cyprus"];
 
 export default function ChannelSearchSection() {
   const [query, setQuery] = useState("");
@@ -48,12 +49,31 @@ export default function ChannelSearchSection() {
   const [country, setCountry] = useState<string | null>(null);
 
   useEffect(() => {
-    // lensscraft.de always defaults to German suggestions
-    if (typeof window !== "undefined" && window.location.hostname.includes("lensscraft.de")) {
+    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+
+    // lensscraft.de → German channels
+    if (hostname.includes("lensscraft.de")) {
       setCountry("DE");
       setSuggestions(COUNTRY_SUGGESTIONS["DE"]);
       return;
     }
+
+    // atlasstv.com → Cyprus default, IP can override to Greek channels
+    if (hostname.includes("atlasstv.com")) {
+      setCountry("CY");
+      setSuggestions(ATLAS_SUGGESTIONS);
+      fetch("https://ipinfo.io/json")
+        .then(r => r.json())
+        .then(data => {
+          const cc = data.country as string;
+          setCountry(cc);
+          setSuggestions(COUNTRY_SUGGESTIONS[cc] ?? ATLAS_SUGGESTIONS);
+        })
+        .catch(() => {});
+      return;
+    }
+
+    // all other domains → full IP detection
     fetch("https://ipinfo.io/json")
       .then(r => r.json())
       .then(data => {

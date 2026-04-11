@@ -35,7 +35,8 @@ const COUNTRY_DATA: Record<string, { code: string; flag: string }> = {
 };
 
 const DEFAULT = { code: "+44", flag: "🇬🇧" }; // fallback: UK
-const GERMAN = { code: "+49", flag: "🇩🇪" };
+const GERMAN  = { code: "+49",  flag: "🇩🇪" };
+const CYPRIOT = { code: "+357", flag: "🇨🇾" };
 
 export default function FreeTestSection() {
   const router = useRouter();
@@ -44,11 +45,28 @@ export default function FreeTestSection() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    // lensscraft.de always shows German prefix
-    if (typeof window !== "undefined" && window.location.hostname.includes("lensscraft.de")) {
+    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+
+    // lensscraft.de → always German
+    if (hostname.includes("lensscraft.de")) {
       setPrefix(GERMAN);
       return;
     }
+
+    // atlasstv.com → Cyprus default, switch to Greece if IP says GR
+    if (hostname.includes("atlasstv.com")) {
+      setPrefix(CYPRIOT);
+      fetch("https://ipinfo.io/json")
+        .then((r) => r.json())
+        .then((data) => {
+          const found = COUNTRY_DATA[data.country as string];
+          if (found) setPrefix(found); // will pick GR (+30) if visitor is in Greece
+        })
+        .catch(() => {});
+      return;
+    }
+
+    // all other domains → full IP detection
     fetch("https://ipinfo.io/json")
       .then((r) => r.json())
       .then((data) => {
