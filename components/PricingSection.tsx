@@ -30,7 +30,7 @@ const premiumFeatures = [
   "Smart TV, Box, Mobile, PC",
   "Automatic updates",
   "International channels included",
-  "🔞 14,000+ Premium Adult titles in UHD",
+  "🔞 8,000+ Premium Adult titles in UHD",
 ];
 
 const goldFeatures = [
