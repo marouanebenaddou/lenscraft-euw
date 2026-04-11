@@ -21,14 +21,14 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)" }}>
-            Last updated: April 2025 — {brandName} IPTV
+            Last updated: April 2025 — {brandName}
           </p>
         </div>
 
         {[
           {
             title: "1. Who We Are",
-            content: `${brandName} IPTV ("we", "us", "our") provides premium IPTV streaming services to customers across Europe and worldwide. We are committed to protecting your personal data in accordance with the EU General Data Protection Regulation (GDPR).
+            content: `${brandName} ("we", "us", "our") operates a digital entertainment platform and related services for customers across Europe and worldwide. We are committed to protecting your personal data in accordance with the EU General Data Protection Regulation (GDPR).
 
 Contact: contact@lensscrafts.com`,
           },
@@ -49,7 +49,7 @@ We do not collect payment card details directly — all transactions are handled
             content: `We use your personal data to:
 • Contact you via WhatsApp to set up your free trial or subscription
 • Send service-related communications
-• Improve our services and website experience
+• Improve our platform and website experience
 • Personalise content based on your country/region
 • Comply with legal obligations
 
@@ -68,7 +68,7 @@ We do not sell, rent or share your personal data with third parties for marketin
           },
           {
             title: "6. Facebook Lead Ads",
-            content: `If you submit your details through a Facebook Instant Form, your data is transferred from Meta Platforms to our systems via a secure API. This data is used solely to contact you about our IPTV service. Meta's own privacy policy also applies to data collected through their platform.`,
+            content: `If you submit your details through a Facebook Instant Form, your data is transferred from Meta Platforms to our systems via a secure API. This data is used solely to contact you about our service. Meta's own privacy policy also applies to data collected through their platform.`,
           },
           {
             title: "7. Data Retention",
