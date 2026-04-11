@@ -35,6 +35,7 @@ const COUNTRY_DATA: Record<string, { code: string; flag: string }> = {
 };
 
 const DEFAULT = { code: "+44", flag: "🇬🇧" }; // fallback: UK
+const GERMAN = { code: "+49", flag: "🇩🇪" };
 
 export default function FreeTestSection() {
   const router = useRouter();
@@ -43,6 +44,11 @@ export default function FreeTestSection() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    // lensscraft.de always shows German prefix
+    if (typeof window !== "undefined" && window.location.hostname.includes("lensscraft.de")) {
+      setPrefix(GERMAN);
+      return;
+    }
     fetch("https://ipinfo.io/json")
       .then((r) => r.json())
       .then((data) => {
