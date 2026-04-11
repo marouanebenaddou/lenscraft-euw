@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { ShieldCheck, Zap, DollarSign, Tv, Headphones } from "@/components/icons";
 import { Animate } from "@/components/Animate";
+import { useBrand } from "@/lib/useBrand";
 
 const iconData = [
   { icon: <ShieldCheck size={22} color="white" />, bg: "#14B8A6" },
@@ -21,6 +22,7 @@ const whyItems = [
 ];
 
 export default function WhyChooseUsSection() {
+  const { name: brandName } = useBrand();
   return (
     <section id="comment-ca-marche" style={{ backgroundColor: "#0E1115", padding: "96px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -31,7 +33,7 @@ export default function WhyChooseUsSection() {
               OUR ADVANTAGES
             </div>
             <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#FAFAFA", marginBottom: 12 }}>
-              Why <span style={{ background: "linear-gradient(to right, #257BF4, #E63333)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Lenscraft?</span>
+              Why <span style={{ background: "linear-gradient(to right, #257BF4, #E63333)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{brandName}?</span>
             </h2>
             <p style={{ fontSize: 16, color: "#9CA3AF", maxWidth: 520, margin: "0 auto" }}>
               7 years of experience in premium streaming with thousands of satisfied customers

@@ -1,5 +1,6 @@
 "use client";
 import { Animate } from "@/components/Animate";
+import { useBrand } from "@/lib/useBrand";
 
 type Channel = {
   name: string;
@@ -43,13 +44,14 @@ const channels: Channel[] = [
 ];
 
 export default function ChannelLogosSection() {
+  const { name: brand } = useBrand();
   return (
     <section style={{ backgroundColor: "#0E1115", padding: "96px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
         {/* Header */}
         <Animate type="fadeInUp">
           <h2 style={{ fontSize: "clamp(22px, 3vw, 36px)", fontWeight: 800, color: "#FAFAFA", textAlign: "center", marginBottom: 12, maxWidth: 760, margin: "0 auto 12px" }}>
-            Discover an Endless World of Entertainment with Lenscraft
+            Discover an Endless World of Entertainment with {brand}
           </h2>
           <p style={{ fontSize: 14, color: "#9CA3AF", textAlign: "center", marginBottom: 56, maxWidth: 700, margin: "0 auto 56px" }}>
             One subscription, everything you love. We bring you the full range of content — streaming, live sports, movies and series from across Europe — all in one place.

@@ -1,14 +1,16 @@
 "use client";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useBrand } from "@/lib/useBrand";
 
 function ThankYouContent() {
   const router = useRouter();
   const params = useSearchParams();
+  const { name: brandName } = useBrand();
   const [seconds, setSeconds] = useState(10);
 
   const clientWa = params.get("wa") || "";
-  const waMsg = encodeURIComponent(`Hello, I would like to test Lenscraft free for 24h. My WhatsApp number: ${clientWa}`);
+  const waMsg = encodeURIComponent(`Hello, I would like to test ${brandName} free for 24h. My WhatsApp number: ${clientWa}`);
   const waLink = `https://wa.me/447446248557?text=${waMsg}`;
 
   useEffect(() => {
@@ -84,7 +86,7 @@ function ThankYouContent() {
             margin: "0 auto 40px",
           }}
         >
-          Thank you for your interest. A Lenscraft agent will contact you very soon on your WhatsApp to set up your free trial or finalize your subscription.
+          Thank you for your interest. A {brandName} agent will contact you very soon on your WhatsApp to set up your free trial or finalize your subscription.
         </p>
 
         {/* Info card */}

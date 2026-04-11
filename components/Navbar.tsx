@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PhoneCall, Menu, X } from "@/components/icons";
+import { useBrand } from "@/lib/useBrand";
 
 export default function Navbar() {
+  const { name: brandName } = useBrand();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -46,7 +48,7 @@ export default function Navbar() {
         }}>
           {/* Logo */}
           <a href="#" style={{ textDecoration: "none", flexShrink: 0 }}>
-            <img src="/images/logo.png" alt="Lenscraft" style={{ height: 48, width: "auto", display: "block" }} />
+            <img src="/images/logo.png" alt={brandName} style={{ height: 48, width: "auto", display: "block" }} />
           </a>
 
           {/* Desktop nav links */}

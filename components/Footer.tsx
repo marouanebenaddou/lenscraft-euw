@@ -1,5 +1,6 @@
 "use client";
 import { Animate } from "@/components/Animate";
+import { useBrand } from "@/lib/useBrand";
 
 function FooterCol({ title, items }: { title: string; items: string[] }) {
   return (
@@ -26,6 +27,7 @@ function FooterCol({ title, items }: { title: string; items: string[] }) {
 }
 
 export default function Footer() {
+  const { name: brandName } = useBrand();
   return (
     <footer style={{ backgroundColor: "#080B0F", paddingTop: 64, paddingBottom: 32, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
@@ -52,7 +54,7 @@ export default function Footer() {
                 display: "inline-block",
               }}
             >
-              Lenscraft
+              {brandName}
             </div>
             <p style={{ fontSize: 14, color: "#9CA3AF", lineHeight: 1.6, marginTop: 12, maxWidth: 220 }}>
               Premium IPTV — HD/4K quality, 35,000+ channels, instant activation.
@@ -67,7 +69,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginTop: 48, paddingTop: 24, textAlign: "center" }}>
-          <p style={{ fontSize: 13, color: "#6B7280" }}>© 2024 Lenscraft — All rights reserved.</p>
+          <p style={{ fontSize: 13, color: "#6B7280" }}>© 2025 {brandName} — All rights reserved.</p>
         </div>
         </Animate>
       </div>
