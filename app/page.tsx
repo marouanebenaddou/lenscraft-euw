@@ -59,6 +59,7 @@ export default function Home() {
         <section id="garantie">
           <GuaranteeSection />
         </section>
+        <AdultSection />
         <section id="fonctionnalites">
           <FeaturesSection />
         </section>
@@ -75,7 +76,6 @@ export default function Home() {
           <SupportSection />
         </section>
         <CTASection />
-        <AdultSection />
       </main>
       <Footer />
     </>
