@@ -30,6 +30,7 @@ const premiumFeatures = [
   "Smart TV, Box, Mobile, PC",
   "Automatic updates",
   "International channels included",
+  "🔞 14,000+ Premium Adult titles in UHD",
 ];
 
 const goldFeatures = [
@@ -41,6 +42,7 @@ const goldFeatures = [
   "Complete EPG electronic guide",
   "24/7 priority support",
   "All devices compatible",
+  "🔞 14,000+ Premium Adult titles in UHD",
 ];
 
 const goldLocked = [
