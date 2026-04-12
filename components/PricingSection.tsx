@@ -24,7 +24,6 @@ const goldPrices: Record<number, { price: string; original: string; perYear: str
 const premiumFeatures = [
   "HD / 4K quality on all your screens",
   "Works with any player",
-  "1 device simultaneously",
   "Activation in under 5 minutes",
   "WhatsApp support 7 days/week",
   "Smart TV, Box, Mobile, PC",
@@ -36,7 +35,6 @@ const premiumFeatures = [
 const goldFeatures = [
   "Premium 4K Ultra HD quality",
   "Works with any player",
-  "1 device simultaneously",
   "Exclusive Anti-Freeze technology",
   "24h Replay on selected channels",
   "Complete EPG electronic guide",
@@ -129,6 +127,10 @@ function DesktopTile({
         {cta}
       </button>
       <ul className="space-y-2 pt-1 border-t border-white/8">
+        <li className="flex items-start gap-2 text-xs text-white/70">
+          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: accent }} />
+          {devices} {devices === 1 ? "device" : "devices"} simultaneously
+        </li>
         {features.map((item) => (
           <li key={item} className="flex items-start gap-2 text-xs text-white/70">
             <CheckCircle2 className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: accent }} />
@@ -243,6 +245,10 @@ export default function PricingSection() {
             </PricingCard.Header>
             <PricingCard.Body>
               <PricingCard.List>
+                <PricingCard.ListItem>
+                  <CheckCircle2 className="h-4 w-4 text-cyan-400 mt-0.5 shrink-0" />
+                  <span className="text-white/75">{premiumDevices} {premiumDevices === 1 ? "device" : "devices"} simultaneously</span>
+                </PricingCard.ListItem>
                 {premiumFeatures.map((item) => (
                   <PricingCard.ListItem key={item}>
                     <CheckCircle2 className="h-4 w-4 text-cyan-400 mt-0.5 shrink-0" />
@@ -288,6 +294,10 @@ export default function PricingSection() {
               </PricingCard.Header>
               <PricingCard.Body>
                 <PricingCard.List>
+                  <PricingCard.ListItem>
+                    <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+                    <span className="text-white/75">{goldDevices} {goldDevices === 1 ? "device" : "devices"} simultaneously</span>
+                  </PricingCard.ListItem>
                   {goldFeatures.map((item) => (
                     <PricingCard.ListItem key={item}>
                       <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
