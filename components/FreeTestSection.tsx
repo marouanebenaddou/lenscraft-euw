@@ -78,7 +78,7 @@ export default function FreeTestSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const digits = localNumber.replace(/^0+/, "");
+    const digits = localNumber.replace(/\s+/g, "").replace(/^0+/, "");
     const cleanWa = `${prefix.code}${digits}`;
     const payload = {
       object: "page",
