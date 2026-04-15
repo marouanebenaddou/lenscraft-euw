@@ -29,6 +29,7 @@ jobs:
         run: sudo apt-get install -y lftp
 
       - name: Deploy to main domain
+        continue-on-error: true
         run: |
           lftp -e "
             set ftp:ssl-allow no;
@@ -43,6 +44,7 @@ jobs:
           "
 
       - name: Deploy to lensscraft.de
+        continue-on-error: true
         run: |
           lftp -e "
             set ftp:ssl-allow no;
@@ -57,6 +59,7 @@ jobs:
           "
 
       - name: Deploy to atlasstv.com
+        continue-on-error: true
         run: |
           lftp -e "
             set ftp:ssl-allow no;
